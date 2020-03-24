@@ -250,7 +250,7 @@ class ExpenseClaim(AccountsController):
 
 	def validate_sanctioned_amount(self):
 		for d in self.get('expenses'):
-			if flt(d.sanctioned_amount) > flt(d.amount):
+			if flt(d.sanctioned_amount) < 0:
 				frappe.throw(_("Sanctioned Amount cannot be less than 0."))
 
 	def set_expense_account(self, validate=False):
